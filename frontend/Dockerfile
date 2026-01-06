@@ -11,15 +11,14 @@ RUN apk add --no-cache python3 make g++ || true
 
 # Copy package files (leverage cache)
 COPY package*.json ./
-RUN npm ci --no-audit --prefer-offline
+RUN npm install --no-audit --prefer-offline
 
 # Copy source and build
 COPY . .
 
-# Build argument for dynamic user path
-ARG USER_NAME=aryan
-ENV PUBLIC_URL=/${USER_NAME}
-ENV REACT_APP_API_BASE_URL=/${USER_NAME}/api
+ENV REACT_APP_API_BASE_URL=/aryan/api
+ENV PUBLIC_URL=/aryan
+
 RUN npm run build
 
 ############################
@@ -36,10 +35,6 @@ COPY --from=builder /app/build /usr/share/nginx/html
 
 # Expose web port
 EXPOSE 80
-
-# Healthcheck
-HEALTHCHECK --interval=15s --timeout=5s --start-period=5s --retries=3 \
-  CMD wget -qO- --no-check-certificate http://127.0.0.1/health || exit 1
 
 # Run nginx in foreground
 CMD ["nginx", "-g", "daemon off;"]
