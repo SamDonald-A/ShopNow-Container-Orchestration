@@ -5,11 +5,16 @@ pipeline {
         DOCKERHUB_REPO = "samdonalda"
         FRONTEND_IMAGE = "shopnow-frontend"
         BACKEND_IMAGE  = "shopnow-backend"
+
         HELM_RELEASE   = "shopnow"
         NAMESPACE      = "shopnow-app"
+
+        AWS_REGION     = "eu-west-2"
+        EKS_CLUSTER    = "shopnow-cluster"   // CHANGE if different
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -41,8 +46,21 @@ pipeline {
                       docker push ${DOCKERHUB_REPO}/${FRONTEND_IMAGE}:latest
                       docker push ${DOCKERHUB_REPO}/${BACKEND_IMAGE}:latest
                     '''
-                    echo "Docker images pushed successfully!"
                 }
+            }
+        }
+
+        stage('Configure Kubeconfig (EKS)') {
+            steps {
+                sh '''
+                  echo "Configuring kubeconfig for EKS..."
+                  aws eks update-kubeconfig \
+                    --region ${AWS_REGION} \
+                    --name ${EKS_CLUSTER}
+
+                  echo "Verifying cluster access..."
+                  kubectl get nodes
+                '''
             }
         }
 
@@ -53,7 +71,6 @@ pipeline {
                   helm upgrade --install ${HELM_RELEASE} ./shopnow-helm \
                     --namespace ${NAMESPACE} \
                     --create-namespace
-                  echo "Helm chart deployed successfully!"
                 '''
             }
         }
@@ -61,13 +78,13 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 sh '''
-                  echo "Listing all pods in namespace ${NAMESPACE}..."
+                  echo "Pods:"
                   kubectl get pods -n ${NAMESPACE} -o wide
-                  
-                  echo "Listing all services..."
+
+                  echo "Services:"
                   kubectl get svc -n ${NAMESPACE}
-                  
-                  echo "Listing ingress / load balancer..."
+
+                  echo "Ingress / LoadBalancer:"
                   kubectl get ingress -n ${NAMESPACE}
                 '''
             }
@@ -76,13 +93,13 @@ pipeline {
         stage('Show Pod Logs (Optional)') {
             steps {
                 sh '''
-                  echo "Showing last 50 lines of logs for backend pod..."
+                  echo "Backend logs:"
                   BACKEND_POD=$(kubectl get pods -n ${NAMESPACE} -l app=backend -o jsonpath="{.items[0].metadata.name}")
-                  kubectl logs $BACKEND_POD -n ${NAMESPACE} --tail=50
-                  
-                  echo "Showing last 50 lines of logs for frontend pod..."
+                  kubectl logs $BACKEND_POD -n ${NAMESPACE} --tail=50 || true
+
+                  echo "Frontend logs:"
                   FRONTEND_POD=$(kubectl get pods -n ${NAMESPACE} -l app=frontend -o jsonpath="{.items[0].metadata.name}")
-                  kubectl logs $FRONTEND_POD -n ${NAMESPACE} --tail=50
+                  kubectl logs $FRONTEND_POD -n ${NAMESPACE} --tail=50 || true
                 '''
             }
         }
@@ -90,10 +107,10 @@ pipeline {
 
     post {
         success {
-            echo "Deployment completed successfully! All services are running."
+            echo "✅ Deployment completed successfully!"
         }
         failure {
-            echo "Deployment failed! Check Jenkins logs for details."
+            echo "❌ Deployment failed. Check logs above."
         }
     }
 }
