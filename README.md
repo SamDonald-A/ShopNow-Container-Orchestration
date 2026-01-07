@@ -162,7 +162,30 @@ Make sure all the services are installed
 
 <img width="976" height="424" alt="image" src="https://github.com/user-attachments/assets/45737ad6-1235-4ee7-8153-8864d82f4c03" />
 
+•	Create and Attach EBS setup in your EC2 Jenkins Host since we need PVC for MongoDB (EKS always Need EBS if PVC required – In AWS PVC means EBS)
+•	And make sure your node group also has the IAM Role policy to access EBS, So that It can create and attach EBS-CSI Volume on the deployment
+
+<img width="976" height="334" alt="image" src="https://github.com/user-attachments/assets/ef5f3d36-eca6-4354-9380-c17151788de6" />
+
  •	After debuging, push the code and check the pipeline then Check All Pods and services are running on the success
+
+<img width="975" height="498" alt="image" src="https://github.com/user-attachments/assets/5d714f3b-0da6-49f3-9dc4-4230233c8887" />
+
+<img width="976" height="502" alt="image" src="https://github.com/user-attachments/assets/ba7447c9-3b5c-4475-a810-f5c095e3f24f" />
+
+•	Check the Load balancer on the browser – /aryan after ELB is able to fetch products on the Landing page
+
+<img width="975" height="124" alt="image" src="https://github.com/user-attachments/assets/891d3426-00a6-4a6a-91c3-e0815cffd090" />
+
+<img width="976" height="490" alt="image" src="https://github.com/user-attachments/assets/d2becce9-a587-431b-b5cc-d3494191dd9a" />
+
+<img width="975" height="484" alt="image" src="https://github.com/user-attachments/assets/06897b2a-aa5b-4279-a1ad-b39f578d569e" />
+App Successfully Deployed using Helm, Jenkins and AWS EKS Cluster
+
+Documentation by: Sam Donald A
+Email: samdonaldand@gmail.com
+GitHub: https://github.com/SamDonald-A
+Website: www.samdonald.in
 
 
 # 🛒 ShopNow E-Commerce - Kubernetes Learning Project
