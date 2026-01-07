@@ -44,7 +44,7 @@ Github Link: https://github.com/SamDonald-A/ShopNow-Container-Orchestration
 
 <img width="976" height="262" alt="image" src="https://github.com/user-attachments/assets/ad331fd9-fd89-46ca-a88a-974db5c0570f" />
 
-Step 3: Container orchestration - Create Kubernetes manifest files
+# Step 3: Container orchestration - Create Kubernetes manifest files
 
 <img width="974" height="391" alt="image" src="https://github.com/user-attachments/assets/67714ee2-4e44-4e10-bec6-901ca6f61e0b" />
 
