@@ -16,7 +16,7 @@ backend:
 mongo:
   image: mongo
   tag: "6.0"
-  storage: 2Gi
+  storage: 5Gi
   port: 27017
 
 ingress:
