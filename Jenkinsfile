@@ -93,7 +93,7 @@ pipeline {
             echo "Deployment completed successfully! All services are running."
         }
         failure {
-            echo "Deployment failed. Check Jenkins logs for details."
+            echo "Deployment failed! Check Jenkins logs for details."
         }
     }
 }
