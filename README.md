@@ -154,6 +154,10 @@ Make sure all the services are installed
 
 <img width="976" height="503" alt="image" src="https://github.com/user-attachments/assets/b536e972-9555-4b5a-ae15-6db3c557bd57" />
 
+•	Loadbalancer also created 
+
+<img width="975" height="161" alt="image" src="https://github.com/user-attachments/assets/759ccc96-b385-4b14-bfb5-5aee83ff35e1" />
+
 •	Study the log on the pipeline failure and Fix
 
 <img width="976" height="485" alt="image" src="https://github.com/user-attachments/assets/64248fa9-1538-4591-a006-9cf982243668" />
