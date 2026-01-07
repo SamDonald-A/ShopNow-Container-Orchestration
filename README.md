@@ -44,7 +44,125 @@ Github Link: https://github.com/SamDonald-A/ShopNow-Container-Orchestration
 
 <img width="976" height="262" alt="image" src="https://github.com/user-attachments/assets/ad331fd9-fd89-46ca-a88a-974db5c0570f" />
 
+Step 3: Container orchestration - Create Kubernetes manifest files
 
+<img width="974" height="391" alt="image" src="https://github.com/user-attachments/assets/67714ee2-4e44-4e10-bec6-901ca6f61e0b" />
+
+•	Now app is running in Minikube from Kubernetes – We can Access it via minikube tunnel
+
+<img width="976" height="497" alt="image" src="https://github.com/user-attachments/assets/f1227148-f434-45d6-85e5-bde6310a46ec" />
+
+# Step 4: Create Helm and EKS
+
+•	Create Helm folder inside your project root
+
+<img width="976" height="288" alt="image" src="https://github.com/user-attachments/assets/63b97a63-536e-42cd-8941-f1a2a1f2f3b7" />
+
+
+•	Install and deploy helm to create resources – Containers and services are running now
+•	Make sure your delete all the resources that are created before for testing k8s manifest files because helm will create everything fresh again.  
+
+<img width="976" height="347" alt="image" src="https://github.com/user-attachments/assets/340da7ae-a9df-4581-8246-2a23b60d73a0" />
+
+
+•	Resources are created and app deployed using helm chart
+
+<img width="976" height="501" alt="image" src="https://github.com/user-attachments/assets/8f871ab3-7360-4313-8607-a42d11a36482" />
+
+Step 5: Jenkinsfile and Jenkin setup
+
+•	Create Jenkins file
+
+<img width="975" height="497" alt="image" src="https://github.com/user-attachments/assets/5d39dddc-ba0b-4598-9faa-c75cdb60eac6" />
+
+•	Create Jenkins server in the EC2 and open it in the browser via IP address and login
+
+<img width="975" height="528" alt="image" src="https://github.com/user-attachments/assets/f5abac9b-d66f-467f-919f-0a439bb45a31" />
+
+•	Click create New Item on the top left
+
+<img width="976" height="497" alt="image" src="https://github.com/user-attachments/assets/db84fdc7-9e57-4f7a-8c18-79965481cdce" />
+
+•	Give name & Select Pipeline
+
+<img width="976" height="492" alt="image" src="https://github.com/user-attachments/assets/fb250eea-6fa8-4971-9ca9-2cae7da8db89" />
+
+•	Selcte GitHub Hook trigger for GITScm polling (We need to setup webhook in the git repo)
+
+<img width="976" height="494" alt="image" src="https://github.com/user-attachments/assets/38c89a0b-3740-4752-bef2-367dcda40bb8" />
+
+•	Provide that Git repo link here and select your branch
+
+<img width="976" height="432" alt="image" src="https://github.com/user-attachments/assets/ab2ea68e-5250-4626-8e7d-1b8c20bde540" />
+
+<img width="976" height="492" alt="image" src="https://github.com/user-attachments/assets/9f6633ac-6014-4022-be45-89d0b0a3d0ef" />
+
+
+•	Setup Webhook in Github Repository – Goto settings of your repo and click webhook
+
+<img width="976" height="492" alt="image" src="https://github.com/user-attachments/assets/227217ab-b6f6-432c-b259-7757e8d4bc9a" />
+
+•	Click add New then add Payload and select Json
+
+<img width="976" height="484" alt="image" src="https://github.com/user-attachments/assets/174c88a8-59dc-4e6a-ae64-3465cb6909c2" />
+
+•	Click Add webhook
+
+<img width="974" height="403" alt="image" src="https://github.com/user-attachments/assets/c8a2cf2b-d385-4e23-999d-49ffb413e0dd" />
+
+Now we can push the and the Jenkin will be triggered
+
+•	Now setup the Docker Credentials in the Jenkins Global secret
+
+<img width="976" height="492" alt="image" src="https://github.com/user-attachments/assets/419dac12-cfc5-401e-bc75-9864243f4d56" />
+
+•	Create EKS Cluster
+
+<img width="975" height="452" alt="image" src="https://github.com/user-attachments/assets/969be8d9-ba0a-4fe7-a251-8b4a3c8cbf61" />
+
+<img width="974" height="133" alt="image" src="https://github.com/user-attachments/assets/1d32ebe0-03ae-4548-85fc-6464d0fae94f" />
+
+<img width="976" height="127" alt="image" src="https://github.com/user-attachments/assets/52d59518-022a-4492-be64-9716b048dc8b" />
+
+# Step 6: Check Jenkins Host server requirements for EKS to run the app
+
+Make sure all the services are installed
+•	Docker
+•	Helm
+•	Aws CLI
+•	kubectl 
+•	At least t3.midium in EC2 for running the pipeline
+•	At least 20gb storage for the npm and other installation process on the machine
+•	EKS IAM Role permissions
+•	Jenkins
+•	Jenkins credentials
+•	Jenkins plugins
+•	eksctl
+
+<img width="975" height="154" alt="image" src="https://github.com/user-attachments/assets/8de5f051-71c7-48d3-9e5a-d0331ce7a8a9" />
+
+
+•	Also make sure all required plugins installed in Jenkins
+
+<img width="975" height="243" alt="image" src="https://github.com/user-attachments/assets/b777cf20-a287-4da5-8b93-e414aba1da23" />
+
+•	Then Change the Jenkins pipeline flow according to your requirements and push the code to the repository
+
+<img width="976" height="293" alt="image" src="https://github.com/user-attachments/assets/14d134a0-5b6b-47e2-b43a-edf47b8ad874" />
+
+•	Pipeline triggered
+
+<img width="976" height="503" alt="image" src="https://github.com/user-attachments/assets/b536e972-9555-4b5a-ae15-6db3c557bd57" />
+
+•	Study the log on the pipeline failure and Fix
+
+<img width="976" height="485" alt="image" src="https://github.com/user-attachments/assets/64248fa9-1538-4591-a006-9cf982243668" />
+
+•	Make sure you have this role in your EC2 IAM of Jenkins Server
+
+<img width="976" height="424" alt="image" src="https://github.com/user-attachments/assets/45737ad6-1235-4ee7-8153-8864d82f4c03" />
+
+ •	After debuging, push the code and check the pipeline then Check All Pods and services are running on the success
 
 
 # 🛒 ShopNow E-Commerce - Kubernetes Learning Project
