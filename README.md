@@ -69,7 +69,7 @@ Github Link: https://github.com/SamDonald-A/ShopNow-Container-Orchestration
 
 <img width="976" height="501" alt="image" src="https://github.com/user-attachments/assets/8f871ab3-7360-4313-8607-a42d11a36482" />
 
-Step 5: Jenkinsfile and Jenkin setup
+# Step 5: Jenkinsfile and Jenkin setup
 
 •	Create Jenkins file
 
