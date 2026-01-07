@@ -10,7 +10,7 @@ pipeline {
         NAMESPACE      = "shopnow-app"
 
         AWS_REGION     = "eu-west-2"
-        EKS_CLUSTER    = "shopnow-cluster"   // CHANGE if different
+        EKS_CLUSTER    = "sam-project-cluster"
     }
 
     stages {
