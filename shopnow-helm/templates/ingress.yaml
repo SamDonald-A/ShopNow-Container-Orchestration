@@ -27,7 +27,6 @@
 #                 port:
 #                   number: {{ .Values.backend.port }}
 # {{- end }}
-
 {{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -41,7 +40,8 @@ spec:
   rules:
     - http:
         paths:
-          - path: /api(/|$)(.*)
+          # Backend
+          - path: /aryan/api(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
@@ -49,8 +49,9 @@ spec:
                 port:
                   number: {{ .Values.backend.port }}
 
-          - path: /(.*)
-            pathType: Prefix
+          # Frontend (React app)
+          - path: /aryan(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: frontend
