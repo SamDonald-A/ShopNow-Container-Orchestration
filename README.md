@@ -1,3 +1,51 @@
+# Graded Assignment on Container Orchestration
+Objective: To automate the pipeline using ECR, EKS and Jenkins and deploy the app
+
+Github Link: https://github.com/SamDonald-A/ShopNow-Container-Orchestration 
+---
+
+# Step 1: Git and local code setup
+
+•	Fork or Clone and Push it to your repo
+
+<img width="975" height="477" alt="image" src="https://github.com/user-attachments/assets/2d4764ea-949c-4e07-aec5-beed6868b45f" />
+
+•	Go to backend folder and do npm install then start the backend server to locally run the app for testing
+
+<img width="976" height="442" alt="image" src="https://github.com/user-attachments/assets/b0272528-8504-4af0-9321-e6714626dde0" />
+
+•	Do the same for frontend as well
+
+<img width="976" height="460" alt="image" src="https://github.com/user-attachments/assets/c0d5444e-587d-4e5d-a468-7d2f1ac4b445" />
+
+•	App is running locally without Docker and Kubernetes
+
+<img width="976" height="497" alt="image" src="https://github.com/user-attachments/assets/5c60e62b-6f7f-4920-8323-6ad3203228ce" />
+
+# Step 2: Containerization - Docker setup
+
+•	Since we have Dockerfile Build it
+
+<img width="976" height="480" alt="image" src="https://github.com/user-attachments/assets/969cc05a-756d-471c-98a5-cd7ef877b93e" />
+
+•	Need to create repository for frontend and backend in DockerHub for pushing images
+
+<img width="936" height="474" alt="image" src="https://github.com/user-attachments/assets/d8759b92-5d55-47b4-b4e2-2a309d058dde" />
+
+<img width="936" height="453" alt="image" src="https://github.com/user-attachments/assets/df4adb3f-f382-49a3-9f11-34a41276a5da" />
+
+<img width="936" height="240" alt="image" src="https://github.com/user-attachments/assets/92871133-c01a-48e2-b5ec-a9ecd2f6a78c" />
+
+•	Tag each images from local
+
+<img width="976" height="171" alt="image" src="https://github.com/user-attachments/assets/f70b2a6d-b561-4f55-a96b-657098cf8dba" />
+
+•	Push it to DockerHub
+
+<img width="976" height="262" alt="image" src="https://github.com/user-attachments/assets/ad331fd9-fd89-46ca-a88a-974db5c0570f" />
+
+
+
 
 # 🛒 ShopNow E-Commerce - Kubernetes Learning Project
 
