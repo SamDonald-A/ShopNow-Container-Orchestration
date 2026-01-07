@@ -1,5 +1,5 @@
 # Graded Assignment on Container Orchestration
-Objective: To automate the pipeline using ECR, EKS and Jenkins and deploy the app
+Objective: To automate the pipeline using ECR, EKS, EBS and Jenkins and deploy the app
 
 Github Link: https://github.com/SamDonald-A/ShopNow-Container-Orchestration 
 ---
